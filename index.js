@@ -6,12 +6,14 @@ const cors = require('cors')
 
 const app = express()
 const userRoutes = require('./routes/userRoutes')
+const maintainanceRoutes = require('./routes/maintainancesRoutes')
 
 app.use(cors())
 app.use(express.json())
 app.options('*', cors())
 
 app.use('/api', userRoutes)
+app.use('/api', maintainanceRoutes)
 
 app.listen(3000, () => {
     console.log('App initialised. OK')
