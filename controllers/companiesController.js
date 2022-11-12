@@ -30,7 +30,7 @@ function getCompanies(req, res) {
         return res.status(200).send(companies)
     })
 }
-
+//funcion delete company
 const companyDelete = (req, res) => {
 
     Company.findByIdAndRemove(req.params.id)
@@ -42,8 +42,20 @@ const companyDelete = (req, res) => {
         });
 };
 
+//funcion update company
+const companyUpdate = (req, res) => {
+    Company.findByIdAndUpdate(req.params.id, req.body)
+        .then(function () {
+            res.json("Company updated");
+        })
+        .catch(function (err) {
+            res.status(422).send("Company update failed.");
+        });
+};
+
 module.exports = {
     createCompany,
     getCompanies,
-    companyDelete
+    companyDelete,
+    companyUpdate
 }
