@@ -31,7 +31,19 @@ function getCompanies(req, res) {
     })
 }
 
+const companyDelete = (req, res) => {
+
+    Company.findByIdAndRemove(req.params.id)
+        .then(function () {
+            res.status(200).json("Company deleted");
+        })
+        .catch(function (err) {
+            res.status(400).send("Company delete failed.");
+        });
+};
+
 module.exports = {
     createCompany,
-    getCompanies
+    getCompanies,
+    companyDelete
 }
