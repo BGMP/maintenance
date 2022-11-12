@@ -30,6 +30,18 @@ function getCompanies(req, res) {
         return res.status(200).send(companies)
     })
 }
+
+//funcion ver una company
+const company_details = (req, res) => {
+    Company.findById(req.params.id, function (err, company) {
+        if (!company) {
+            res.status(404).send("No result found");
+        } else {
+            res.json(company);
+        }
+    });
+};
+
 //funcion delete company
 const companyDelete = (req, res) => {
 
@@ -57,5 +69,6 @@ module.exports = {
     createCompany,
     getCompanies,
     companyDelete,
-    companyUpdate
+    companyUpdate,
+    company_details
 }
