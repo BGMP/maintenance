@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Maintenance = require("../models/maintenance");
 
 function createUser(req, res) {
     const {name, email, admin, company} = req.body
@@ -28,7 +29,51 @@ function getUsers(req, res) {
     })
 }
 
+const userDetails = (req, res) => {
+    User.findById(req.params.id, function (err, user) {
+        if (!user) {
+            res.status(404).send("No result found");
+        } else {
+            res.json(user);
+        }
+    });
+};
+
+const userUpdate = (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body)
+        .then(function () {
+            res.json("User updated");
+        })
+        .catch(function (err) {
+            res.status(422).send("User update failed.");
+        });
+};
+
+const userDelete = (req, res) => {
+    User.findById(req.params.id, function (err, user) {
+        if (!user){
+            res.status(404).send("User not found");
+        } else {
+            Maintenance.findByIdAndRemove(req.params.id)
+                .then(function () {
+                    res.status(200).json("User deleted");
+                })
+                .catch(function (err) {
+                    res.status(400).send("User delete failed.");
+                });
+        }
+    });
+};
+
+
+
+
+
+
 module.exports = {
     createUser,
-    getUsers
+    getUsers,
+    userDelete,
+    userUpdate,
+    userDetails
 }
