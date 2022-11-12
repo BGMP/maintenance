@@ -30,7 +30,49 @@ function getMaintenances(req, res) {
     })
 }
 
+
+const maintenancedetails = (req, res) => {
+    Maintenance.findById(req.params.id, function (err, maintenance) {
+        if (!maintenance) {
+            res.status(404).send("No result found");
+        } else {
+            res.json(maintenance);
+        }
+    });
+};
+
+const maintenanceupdate = (req, res) => {
+    Maintenance.findByIdAndUpdate(req.params.id, req.body)
+        .then(function () {
+            res.json("Maintenance updated");
+        })
+        .catch(function (err) {
+            res.status(422).send("Maintenance update failed.");
+        });
+};
+
+const maintenancedelete = (req, res) => {
+    Maintenance.findById(req.params.id, function (err, maintenances) {
+        if (!maintenances) {
+            res.status(404).send("Maintenance not found");
+        } else {
+            Maintenance.findByIdAndRemove(req.params.id)
+                .then(function () {
+                    res.status(200).json("Maintenance deleted");
+                })
+                .catch(function (err) {
+                    res.status(400).send("Maintenace delete failed.");
+                });
+        }
+    });
+};
+
+
+
 module.exports = {
     createMaintenance,
-    getMaintenances
+    getMaintenances,
+    maintenanceupdate,
+    maintenancedelete,
+    maintenancedetails
 }
