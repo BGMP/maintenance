@@ -1,10 +1,12 @@
 const User = require('../models/user')
 
 function createUser(req, res) {
-    const {name, email} = req.body
+    const {name, email, admin, company} = req.body
     const newUser = new User({
         name,
         email,
+        admin,
+        company
     })
 
     newUser.save((error, user) => {

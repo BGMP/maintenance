@@ -14,9 +14,10 @@ const UserSchema = new Schema({
         required: false,
         default: false
     },
-    createdAt: {
-        type: Date,
-        default: Date.now()
+    company: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 })
 
