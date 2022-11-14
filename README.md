@@ -20,7 +20,7 @@ gestión.
 ## Set Up
 Clonar el repositorio
 ```
-git clone  <git lab template url> <project_name>
+git clone https://github.com/BGMP/maintenance
 ```
 Instalar las dependencias:
 ```
