@@ -11,7 +11,7 @@ function createUser(req, res) {
 
     newUser.save((error, user) => {
         if (error) {
-            return res.status(400).send({message: 'Error creating user.'})
+            return res.status(400).send({message: 'Error creating user.', error})
         }
 
         return res.status(200).send(user)

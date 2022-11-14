@@ -14,7 +14,7 @@ function createCompany(req, res) {
 
     newCompany.save((error, company) => {
         if (error) {
-            return res.status(400).send({message: 'Error creating company.'})
+            return res.status(400).send({message: 'Error creating company.', error})
         }
 
         return res.status(200).send(company)

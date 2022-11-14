@@ -3,11 +3,15 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxlength: 50
     },
     email: {
         type: String,
-        required: true
+        unique: true,
+        required: true,
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     admin: {
         type: Boolean,
