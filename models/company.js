@@ -5,7 +5,8 @@ const CompanySchema = new Schema({
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 30
+        maxlength: 50
+
     },
     email: {
         type: String,
