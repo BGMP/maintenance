@@ -1,8 +1,10 @@
 const Maintenance = require('../models/maintenance')
 
 function createMaintenance(req, res) {
-    const {target, type, description, start_date, end_date, registry} = req.body
+    const {company, target, type, description, start_date, end_date, registry} = req.body
+
     const newMaintenance = new Maintenance({
+        company,
         target,
         type,
         description,
@@ -13,7 +15,7 @@ function createMaintenance(req, res) {
 
     newMaintenance.save((error, company) => {
         if (error) {
-            return res.status(400).send({message: 'Error creating maintenance.'})
+            return res.status(400).send({message: 'Error creating maintenance.', error})
         }
 
         return res.status(200).send(company)
