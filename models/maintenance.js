@@ -9,28 +9,39 @@ const MaintenanceSchema = new Schema({
     },
     target: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxlength: 60
     },
     type: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxlength: 40
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5,
+        maxlength: 512
     },
     start_date: {
         type: Date,
-        required: true
+        required: true,
+        max: '2030-01-01'
     },
     end_date: {
         type: Date,
-        required: true
+        required: true,
+        max: '2030-01-01'
     },
     registry: [{
         comment: {
             type: String,
-            required: true
+            required: true,
+            minlength: 5,
+            maxlength: 512
+
         },
         files: [{
             type: String,
