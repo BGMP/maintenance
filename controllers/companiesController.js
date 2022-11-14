@@ -21,7 +21,7 @@ function createCompany(req, res) {
     })
 }
 
-function getCompany() {
+function getCompany(req, res) {
     Company.findById(req.params.id, function (err, company) {
         if (!company) {
             res.status(404).send("No result found");
