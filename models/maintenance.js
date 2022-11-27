@@ -34,20 +34,7 @@ const MaintenanceSchema = new Schema({
         type: Date,
         required: true,
         max: '2030-01-01'
-    },
-    registry: [{
-        comment: {
-            type: String,
-            required: true,
-            minlength: 5,
-            maxlength: 512
-
-        },
-        files: [{
-            type: String,
-            required: false
-        }]
-    }]
+    }
 })
 
 module.exports = mongoose.model('maintenance', MaintenanceSchema)

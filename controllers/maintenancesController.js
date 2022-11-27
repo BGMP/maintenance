@@ -73,5 +73,5 @@ module.exports = {
     getMaintenance,
     updateMaintenance,
     deleteMaintenance,
-    getMaintenances,
+    getMaintenances
 }
