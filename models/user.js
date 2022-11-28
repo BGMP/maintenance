@@ -13,18 +13,11 @@ const UserSchema = new Schema({
         required: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
-    type_user: {
-        type: Number,
-        required: true,
-        default: 3,
-        size: 1
+    type: {
+        type: String,
+        enum: ['admin', 'company', 'vecino'],
+        default: 'vecino'
     }
-    /*
-    * admin: 1
-    * company: 2
-    * vecino: 3
-    */
-
 })
 
 module.exports = mongoose.model('user', UserSchema)
