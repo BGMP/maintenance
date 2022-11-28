@@ -1,10 +1,11 @@
 const Alert = require('../models/alert')
 
 function createAlert(req, res) {
-    const {title, description} = req.body
+    const {title, description, type} = req.body
     const newAlert = new Alert({
         title,
-        description
+        description,
+        type
     })
 
     newAlert.save((error, alert) => {
