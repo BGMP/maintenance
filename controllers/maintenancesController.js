@@ -23,12 +23,27 @@ function createMaintenance(req, res) {
 }
 
 function getMaintenance(req, res) {
+    let userRole
+    let companyId;
+    if (req.body.company != null) {
+        userRole = "company"
+        companyId = req.body.company._id
+    } else {
+        userRole = req.body.user.role
+    }
+
     Maintenance.findById(req.params.id, function (err, maintenance) {
         if (!maintenance) {
             res.status(404).send("No result found");
-        } else {
-            res.json(maintenance);
+            return
         }
+
+        if (userRole === "company" && !maintenance.company.equals(companyId)) {
+            res.status(401).send("No estás autorizado para ver esta mantención")
+            return
+        }
+
+        res.json(maintenance);
     });
 }
 
@@ -59,13 +74,28 @@ function deleteMaintenance(req, res) {
 }
 
 function getMaintenances(req, res) {
-    Maintenance.find({}, (error, maintenances) => {
-        if (error) {
-            return res.status(400).send({message: 'Could not find maintenance.'})
-        }
+    let userRole
+    let companyId;
+    if (req.body.company != null) {
+        userRole = "company"
+        companyId = req.body.company._id
+    } else {
+        userRole = req.body.user.role
+    }
 
-        return res.status(200).send(maintenances)
-    })
+    if (userRole === "admin") {
+        Maintenance.find({}, (error, maintenances) => {
+            if (error) {
+                return res.status(400).send({message: 'Could not find maintenance.'})
+            }
+
+            return res.status(200).send(maintenances)
+        })
+    } else { // company
+        Maintenance.find({ company: companyId }, function (err, maintenances) {
+            return res.status(200).send(maintenances)
+        })
+    }
 }
 
 module.exports = {
