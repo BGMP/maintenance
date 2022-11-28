@@ -1,10 +1,11 @@
 const Alert = require('../models/alert')
 
 function createAlert(req, res) {
-    const {title, description} = req.body
+    const {title, description, type} = req.body
     const newAlert = new Alert({
         title,
-        description
+        description,
+        type
     })
 
     newAlert.save((error, alert) => {
@@ -17,7 +18,7 @@ function createAlert(req, res) {
 }
 
 function getAlert(req, res) {
-    alert.findById(req.params.id, function (err, alert) {
+    Alert.findById(req.params.id, function (err, alert) {
         if (!alert) {
             res.status(404).send("No result found");
         } else {
@@ -27,7 +28,7 @@ function getAlert(req, res) {
 }
 
 function updateAlert(req, res) {
-    alert.findByIdAndUpdate(req.params.id, req.body)
+    Alert.findByIdAndUpdate(req.params.id, req.body)
         .then(function () {
             res.json("alert updated");
         })
@@ -37,7 +38,7 @@ function updateAlert(req, res) {
 }
 
 function deleteAlert(req, res) {
-    alert.findById(req.params.id, function (err, alert) {
+    Alert.findById(req.params.id, function (err, alert) {
         if (!alert){
             res.status(404).send("Alert not found");
         } else {
@@ -53,7 +54,7 @@ function deleteAlert(req, res) {
 }
 
 function getAlerts(req, res) {
-    alert.find({}, (error, alerts) => {
+    Alert.find({}, (error, alerts) => {
         if (error) {
             return res.status(400).send({message: 'Could not find user.'})
         }
