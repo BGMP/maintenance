@@ -42,7 +42,7 @@ function deleteAlert(req, res) {
         if (!alert){
             res.status(404).send("Alert not found");
         } else {
-            alert.findByIdAndRemove(req.params.id)
+            Alert.findByIdAndRemove(req.params.id)
                 .then(function () {
                     res.status(200).json("Alert deleted");
                 })
