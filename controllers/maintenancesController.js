@@ -24,8 +24,10 @@ function createMaintenance(req, res) {
 
 function getMaintenance(req, res) {
     let userRole
+    let companyId;
     if (req.body.company != null) {
         userRole = "company"
+        companyId = req.body.company._id
     } else {
         userRole = req.body.user.role
     }
@@ -36,7 +38,6 @@ function getMaintenance(req, res) {
             return
         }
 
-        const companyId = req.body.company._id
         if (userRole === "company" && !maintenance.company.equals(companyId)) {
             res.status(401).send("No estás autorizado para ver esta mantención")
             return
@@ -74,8 +75,10 @@ function deleteMaintenance(req, res) {
 
 function getMaintenances(req, res) {
     let userRole
+    let companyId;
     if (req.body.company != null) {
         userRole = "company"
+        companyId = req.body.company._id
     } else {
         userRole = req.body.user.role
     }
@@ -89,7 +92,6 @@ function getMaintenances(req, res) {
             return res.status(200).send(maintenances)
         })
     } else { // company
-        const companyId = req.body.company._id
         Maintenance.find({ company: companyId }, function (err, maintenances) {
             return res.status(200).send(maintenances)
         })
