@@ -1,7 +1,7 @@
 backend
 ===
 
-Todo el backend del proyecto, especificación de la API REST y rutas del proyecto.
+Todo el backend del proyecto, especificación de la API REST y rutas de la app.
 
 ## Entorno de Desarrollo
 ### Dependencias
