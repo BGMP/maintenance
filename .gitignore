@@ -40,6 +40,7 @@ build/Release
 
 # Dependency directories
 backend/node_modules/
+frontend/node_modules/
 jspm_packages/
 
 # Snowpack dependency directory (https://snowpack.dev/)
@@ -130,4 +131,26 @@ dist
 .pnp.*
 
 # JetBrains
-../.idea/
+.idea/
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# testing
+frontend/coverage
+
+# next.js
+frontend/.next/
+frontend/out/
+
+# production
+frontend/build
+
+# misc
+frontend/.DS_Store
+frontend/*.pem
+
+# local env files
+frontend/.env*.local
+
+# vercel
+frontend/.vercel
