@@ -42,7 +42,7 @@ La app deberá estar funcionando por defecto en `http://localhost:3000`.
 | **docs/**                | Todos los archivos relacionados a la documentación del proyecto. |
 | **models/**              | Modelos que definen esquemas que serán usados en el almacenamiento e interacción con la base de datos. |
 | **routes/**              | Contiene todas las rutas de express separadas por modelo. |
-| index.js                 | Punto de entrada a la app de express. |
+| index.jsx                 | Punto de entrada a la app de express. |
 | package.json             | Contiene las dependencias de npm y los build scripts. |
 
 ### Scripts
