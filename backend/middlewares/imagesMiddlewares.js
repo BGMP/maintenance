@@ -42,7 +42,10 @@ function authPostRegistry(allowedRoles) {
         next()
     }
 }
-module.exports ={
-    upload,
+
+// FIXME: Mover a otro lado?
+module.exports = {
     authPostRegistry
 }
+
+module.exports = upload
