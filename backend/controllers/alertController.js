@@ -28,7 +28,7 @@ function getAlert(req, res) {
 }
 
 function updateAlert(req, res) {
-    Alert.findByIdAndUpdate(req.params.id, req.body)
+    Alert.findByIdAndUpdate(req.params.id, req.body.alert)
         .then(function () {
             res.json("alert updated");
         })

@@ -48,7 +48,7 @@ function getMaintenance(req, res) {
 }
 
 function updateMaintenance(req, res) {
-    Maintenance.findByIdAndUpdate(req.params.id, req.body)
+    Maintenance.findByIdAndUpdate(req.params.id, req.body.maintenance)
         .then(function () {
             res.json("Maintenance updated");
         })

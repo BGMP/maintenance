@@ -29,7 +29,7 @@ function getRegistry(req, res) {
 }
 
 function updateRegistry(req, res) {
-    Registry.findByIdAndUpdate(req.params.id, req.body)
+    Registry.findByIdAndUpdate(req.params.id, req.body.registry)
         .then(function () {
             res.json("Registry updated");
         })
