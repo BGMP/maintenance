@@ -7,11 +7,11 @@ const storage = multer.diskStorage({
         if(!fs.existsSync(route)){
             fs.mkdirSync(route, {recursive: true})
         }
-        cb(null,ruta)
+        cb(null,route)
     },
     filename:function (req, file, cb){
         let fecha = new Date();
-        fecha = fecha.getFullYear() + '-' + fecha.getMonth() + '-' + fecha.getDate() + '-' + fecha.getHours + ':' + fecha.getMinutes()
+        fecha = fecha.getFullYear() + '_' + (fecha.getMonth()+1) + '_' + fecha.getDate() + '-' + fecha.getHours() + '_' + fecha.getMinutes()
         const nameFile = fecha+' '+file.originalname
         cb(null,nameFile)
     }
@@ -20,32 +20,17 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage:storage,
     fileFilter:function (req,file,cb){
-        if(file.mimeType === 'image/png'){
-            console.log("el archivo es un png")
+        if(file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg'){
+            console.log("el archivo se subio correctamente")
         }else{
             console.log("el archivo tiene otra extension")
         }
         cb(null, true)
     },
     limits: {
-        fileSize: 1024 * 1024
+        fileSize: 1024 * 1024 * 15
     }
 })
 
-function authPostRegistry(allowedRoles) {
-    return function (req, res, next) {
-        const userRole = req.body.user.role
-        if (!allowedRoles.includes(userRole)) {
-            return res.status(401).json("No estás autorizado!")
-        }
-
-        next()
-    }
-}
-
-// FIXME: Mover a otro lado?
-module.exports = {
-    authPostRegistry
-}
 
 module.exports = upload

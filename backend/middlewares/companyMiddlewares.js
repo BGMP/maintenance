@@ -20,7 +20,7 @@ function authPostCompanies(allowedRoles) {
     }
 }
 
-function authDeletCompanies(allowedRoles) {
+function authDeleteCompanies(allowedRoles) {
     return function (req, res, next) {
         const userRole = req.body.user.role
         if (!allowedRoles.includes(userRole)) {
@@ -56,7 +56,7 @@ function authGetsCompanies(allowedRoles) {
 module.exports = {
     authGetCompanies,
     authPostCompanies,
-    authDeletCompanies,
+    authDeleteCompanies,
     authUpdateCompanies,
     authGetsCompanies
 }

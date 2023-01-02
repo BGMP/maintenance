@@ -42,7 +42,7 @@ function deleteCompany(req, res) {
 }
 
 function updateCompany(req, res) {
-    Company.findByIdAndUpdate(req.params.id, req.body)
+    Company.findByIdAndUpdate(req.params.id, req.body.company)
         .then(function () {
             res.json("Company updated");
         })
