@@ -7,26 +7,27 @@ import { getMaintenances } from '../data/maintenances'
 function index() {
 
     const [maintenances, setMaintenances] = useState([{
+        id: '',
         company: '',
         target: '',
         type: '',
         description: '',
         start_date: '',
-        end_date: ''
+        end_date: '',
     }])
     const router = useRouter()
 
     const contentTable = () => {
         return maintenances.map(maintenance => {
             return (
-                <Tr key={maintenance.id}>
-                    <Td>{maintenance.company}</Td>
-                    <Td>{maintenance.description}</Td>
-                    <Td>{maintenance.type}</Td>
-                    <Td>
+                <Tr key={maintenance._id}>
+                    <Td key="">{maintenance.company}</Td>
+                    <Td key="">{maintenance.description}</Td>
+                    <Td key="">{maintenance.type}</Td>
+                    <Td key="">
                         <HStack>
-                            <Button colorScheme={"orange"} onClick={() => router.push(`./product/ver/${product._id}`)}>Ver</Button>
-                            <Button colorScheme={"teal"} onClick={() => router.push(`./product/actualizar/${product._id}`)}>Editar</Button>
+                            <Button colorScheme={"orange"} onClick={() => router.push(`./maintenance/view/${maintenance.id}`)}>Ver</Button>
+                            <Button colorScheme={"teal"} onClick={() => router.push(`./maintenance/update/${maintenance._id}`)}>Editar</Button>
                         </HStack>
                     </Td>
                 </Tr>

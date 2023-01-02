@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const getMaintenances = async () => {
-    const response = await axios.get("http://localhost:3010/api/maintenances");
-    return response
+    return await axios.get("http://localhost:3010/api/maintenances")
 }
 
 const createMaintenance = (maintenance) => {
