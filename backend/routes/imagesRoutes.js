@@ -5,6 +5,9 @@ const upload = require('../middlewares/imagesMiddlewares')
 
 const imagesSize = require('../middlewares/imageSize')
 
-api.post("/registry/upload/:archivo",  upload.array('archivos'), imagesSize, imagesController.uploadNewFile)
+
+api.post("/images/:archivo",  upload.array('archivos'), imagesSize, imagesController.uploadNewImages)
+api.get('/images', imagesController.getImages)
+api.get('/image/download/:id', imagesController.getSpecificImage)
 
 module.exports = api
