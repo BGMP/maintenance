@@ -3,6 +3,7 @@ require ('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const multer = require('multer')
 
 const app = express()
 const alertRoutes = require('./routes/alertRoutes')
@@ -10,6 +11,7 @@ const userRoutes = require('./routes/userRoutes')
 const companyRoutes = require('./routes/companyRoutes')
 const maintenanceRoutes = require('./routes/maintenanceRoutes')
 const registryRoutes = require('./routes/registryRoutes')
+const imagesRoutes = require('./routes/imagesRoutes')
 
 app.use(cors())
 app.use(express.json())
@@ -20,6 +22,7 @@ app.use('/api', userRoutes)
 app.use('/api', companyRoutes)
 app.use('/api', maintenanceRoutes)
 app.use('/api', registryRoutes)
+app.use('/api', imagesRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log('App initialised. OK')

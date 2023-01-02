@@ -1,11 +1,67 @@
-import React from 'react'
+import {Fragment, useState, useEffect} from 'react'
+import { Button, Container, Heading, HStack, Stack, Input, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { getMaintenances } from '../data/maintenances'
+
 
 function index() {
-  return (
-      <div>
-        <h1>index</h1>
-      </div>
-  )
+
+    const [maintenances, setMaintenances] = useState([{
+        company: '',
+        target: '',
+        type: '',
+        description: '',
+        start_date: '',
+        end_date: ''
+    }])
+    const router = useRouter()
+
+    const contentTable = () => {
+        return maintenances.map(maintenance => {
+            return (
+                <Tr key={maintenance.id}>
+                    <Td>{maintenance.company}</Td>
+                    <Td>{maintenance.description}</Td>
+                    <Td>{maintenance.type}</Td>
+                    <Td>
+                        <HStack>
+                            <Button colorScheme={"orange"} onClick={() => router.push(`./product/ver/${product._id}`)}>Ver</Button>
+                            <Button colorScheme={"teal"} onClick={() => router.push(`./product/actualizar/${product._id}`)}>Editar</Button>
+                        </HStack>
+                    </Td>
+                </Tr>
+            )
+        })
+    }
+
+    useEffect(() => {
+        getMaintenances().then(res => {
+            setMaintenances(res.data)
+        })
+    }, [])
+
+    return (
+      <Fragment>
+          <Container maxW="container.xl">
+              <Heading as="h2" size="2xl" textAlign="center" mt="10">Mantenciones</Heading>
+              <Stack spacing={4} mt="10">
+                  <Table variant="simple">
+                      <Thead>
+                          <Tr>
+                              <Td>Compañía</Td>
+                              <Td>Descripción</Td>
+                              <Td>Tipo</Td>
+                              <Td>Acciones</Td>
+                          </Tr>
+                      </Thead>
+                      <Tbody>
+                          {contentTable()}
+                      </Tbody>
+                  </Table>
+              </Stack>
+          </Container>
+      </Fragment>
+    )
 }
 
 export default index
