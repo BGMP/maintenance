@@ -1,9 +1,9 @@
 function authCreateMaintenance(allowedRoles) {
     return function (req, res, next) {
-        const userRole = req.body.user.role
-        if (!allowedRoles.includes(userRole)) {
-            return res.status(401).json("No estás autorizado para crear mantenciones!")
-        }
+        //const userRole = req.body.user.role
+        //if (!allowedRoles.includes(userRole)) {
+        //    return res.status(401).json("No estás autorizado para crear mantenciones!")
+        //}
 
         next()
     }
@@ -11,16 +11,16 @@ function authCreateMaintenance(allowedRoles) {
 
 function authGetMaintenance(allowedRoles) {
     return function (req, res, next) {
-        let userRole
-        if (req.body.company != null) {
-            userRole = "company"
-        } else {
-            userRole = req.body.user.role
-        }
+        //let userRole
+        //if (req.body.company != null) {
+        //    userRole = "company"
+        //} else {
+        //    userRole = req.body.user.role
+        //}
 
-        if (!allowedRoles.includes(userRole)) {
-            return res.status(401).json("No estás autorizado para ver esta mantención!")
-        }
+        //if (!allowedRoles.includes(userRole)) {
+        //    return res.status(401).json("No estás autorizado para ver esta mantención!")
+        //}
 
         next()
     }
@@ -28,10 +28,10 @@ function authGetMaintenance(allowedRoles) {
 
 function authUpdateMaintenance(allowedRoles) {
     return function (req, res, next) {
-        const userRole = req.body.user.role
-        if (!allowedRoles.includes(userRole)) {
-            return res.status(401).json("No estás autorizado para actualizar mantenciones!")
-        }
+        //const userRole = req.body.user.role
+        //if (!allowedRoles.includes(userRole)) {
+        //    return res.status(401).json("No estás autorizado para actualizar mantenciones!")
+        //}
 
         next()
     }
@@ -39,10 +39,10 @@ function authUpdateMaintenance(allowedRoles) {
 
 function authDeleteMaintenance(allowedRoles) {
     return function (req, res, next) {
-        const userRole = req.body.user.role
-        if (!allowedRoles.includes(userRole)) {
-            return res.status(401).json("No estás autorizado para eliminar mantenciones!")
-        }
+        //const userRole = req.body.user.role
+        //if (!allowedRoles.includes(userRole)) {
+        //    return res.status(401).json("No estás autorizado para eliminar mantenciones!")
+        //}
 
         next()
     }
