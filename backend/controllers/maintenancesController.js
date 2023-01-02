@@ -76,26 +76,20 @@ function deleteMaintenance(req, res) {
 function getMaintenances(req, res) {
     let userRole
     let companyId;
-    if (req.body.company != null) {
-        userRole = "company"
-        companyId = req.body.company._id
-    } else {
-        userRole = req.body.user.role
-    }
+    //if (req.body.company != null) {
+    //    userRole = "company"
+    //    companyId = req.body.company._id
+    //} else {
+    //    userRole = req.body.user.role
+    //}
 
-    if (userRole === "admin") {
-        Maintenance.find({}, (error, maintenances) => {
-            if (error) {
-                return res.status(400).send({message: 'Could not find maintenance.'})
-            }
+    Maintenance.find({}, (error, maintenances) => {
+        if (error) {
+            return res.status(400).send({message: 'Could not find maintenance.'})
+        }
 
-            return res.status(200).send(maintenances)
-        })
-    } else { // company
-        Maintenance.find({ company: companyId }, function (err, maintenances) {
-            return res.status(200).send(maintenances)
-        })
-    }
+        return res.status(200).send(maintenances)
+    })
 }
 
 module.exports = {
