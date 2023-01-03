@@ -1,8 +1,7 @@
-import {Fragment, useState, useEffect} from 'react'
-import { Button, Container, Heading, HStack, Stack, Input, Table, Thead, Tr, Td, Th, Tbody } from '@chakra-ui/react'
+import { React, Fragment, useState, useEffect } from 'react'
+import { Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { getMaintenances } from '../data/maintenances'
-
 
 function index() {
 
@@ -15,19 +14,20 @@ function index() {
         start_date: '',
         end_date: '',
     }])
+
     const router = useRouter()
 
     const contentTable = () => {
         return maintenances.map(maintenance => {
             return (
-                <Tr key={maintenance._id}>
-                    <Td key="">{maintenance.company}</Td>
-                    <Td key="">{maintenance.description}</Td>
-                    <Td key="">{maintenance.type}</Td>
-                    <Td key="">
+                <Tr key={maintenance._id + maintenance.company}>
+                    <Td>{maintenance.company}</Td>
+                    <Td>{maintenance.description}</Td>
+                    <Td>{maintenance.type}</Td>
+                    <Td>
                         <HStack>
-                            <Button colorScheme={"orange"} onClick={() => router.push(`./maintenance/view/${maintenance.id}`)}>Ver</Button>
-                            <Button colorScheme={"teal"} onClick={() => router.push(`./maintenance/update/${maintenance._id}`)}>Editar</Button>
+                            <Button colorScheme={"orange"} onClick={() => router.push(`./maintenance/${maintenance._id}`)}>Ver</Button>
+                            <Button colorScheme={"teal"} onClick={() => router.push(`./maintenance/edit/${maintenance._id}`)}>Editar</Button>
                         </HStack>
                     </Td>
                 </Tr>
@@ -45,6 +45,7 @@ function index() {
       <Fragment>
           <Container maxW="container.xl">
               <Heading as="h2" size="2xl" textAlign="center" mt="10">Mantenciones</Heading>
+              <Button colorScheme="blue" mt="10" mb="10" onClick={() => router.push('/maintenance/create')}>Agregar Mantención</Button>
               <Stack spacing={4} mt="10">
                   <Table variant="simple">
                       <Thead>

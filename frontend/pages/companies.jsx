@@ -1,52 +1,70 @@
-import { useState, useEffect } from 'react'
-import { Button, Container, Input, Stack, Text, HStack, Table, Thead, Tbody, Tfoot, Tr, Th, Td, Heading, } from '@chakra-ui/react'
-import axios from 'axios'
+import { React, Fragment, useState, useEffect } from 'react'
+import { Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import {getCompanies, updateCompany} from '../data/companies'
+function index() {
 
-function companies() {
+    const [companies, setCompanies] = useState([{
+        name: '',
+        email: '',
+        rut: '',
+        area: '',
+        phone: '',
+        address: '',
+        contact: '',
+    }])
 
-    const [company, setCompany] = useState([])
     const router = useRouter()
 
-    const getProducts = async () => {
-        const response = await axios.get(`${company.env.API_URL}/companys`)
-        setCompany(response.data)
-    }
-
-    const showNumbers = () => {
-        return company.map(company => {
+    const contentTable = () => {
+        return companies.map(company => {
             return (
-                <Tr key={company._id}>
+                <Tr key={company._id }>
                     <Td>{company.name}</Td>
                     <Td>{company.email}</Td>
                     <Td>{company.rut}</Td>
                     <Td>{company.area}</Td>
                     <Td>{company.phone}</Td>
                     <Td>{company.address}</Td>
-                    <Td><Button onClick={() => router.push(`/company/ver/${company._id}`)}>Ver mas</Button></Td>
+                    <Td>{company.contact}</Td>
+                    <Td>
+                        <HStack>
+
+                        </HStack>
+                    </Td>
                 </Tr>
             )
         })
     }
+
+    useEffect(() => {
+        getCompanies().then(res => {
+            setCompanies(res.data)
+        })
+    }, [])
+
     return (
-        <Container maxH="container.xl" centerContent>
-            <Heading textAlign={"center"} my={10}>Agenda</Heading>
-            <Button colorScheme="teal" onClick={() => router.push('/companies/crear')}>Agregar contacto</Button>
-            <Table variant="simple">
-                <Thead>
-                    <tr>
-                        <Td>Nombre</Td>
-                        <Td>Email</Td>
-                        <Td>Rut</Td>
-                        <Td>Area</Td>
-                        <Td>Numero</Td>
-                        <Td>Direccion</Td>
-                    </tr>
-                </Thead>
-            </Table>
-            {showNumbers()}
-        </Container>
+        <Fragment>
+            <Container maxW="container.xl">
+                <Heading as="h2" size="2xl" textAlign="center" mt="10">Mantenciones</Heading>
+                <Stack spacing={4} mt="10">
+                    <Table variant="simple">
+                        <Thead>
+                            <Tr>
+                                <Td>Compañía</Td>
+                                <Td>Descripción</Td>
+                                <Td>Tipo</Td>
+                                <Td>Acciones</Td>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {contentTable()}
+                        </Tbody>
+                    </Table>
+                </Stack>
+            </Container>
+        </Fragment>
     )
 }
 
-export default companies
+export default index
