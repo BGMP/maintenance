@@ -18,7 +18,7 @@ const createCompany = (Company) => {
     return response
 }
 
-const getCompanies = async (id) => {
+const getCompany = async (id) => {
     console.log(id)
     const response = await axios.get(`${process.env.API}/Company/${id}`)
     return response
