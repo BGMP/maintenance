@@ -16,11 +16,14 @@
     "axios": "^1.2.2",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",
+    "formik": "^2.2.9",
+    "formkit": "^1.0.0-beta.12",
     "framer-motion": "^8.0.2",
     "next": "13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.41.3",
-    "sweetalert2": "^11.6.16"
+    "sweetalert2": "^11.6.16",
+    "yup": "^0.32.11"
   }
 }

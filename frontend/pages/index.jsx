@@ -1,7 +1,7 @@
 import { React, Fragment, useState, useEffect } from 'react'
 import { Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { getMaintenances, updateMaintenance } from '../data/maintenances'
+import { getMaintenances } from '../data/maintenances'
 
 function index() {
 
@@ -45,6 +45,7 @@ function index() {
       <Fragment>
           <Container maxW="container.xl">
               <Heading as="h2" size="2xl" textAlign="center" mt="10">Mantenciones</Heading>
+              <Button colorScheme="blue" mt="10" mb="10" onClick={() => router.push('/maintenance/create')}>Agregar Mantención</Button>
               <Stack spacing={4} mt="10">
                   <Table variant="simple">
                       <Thead>
