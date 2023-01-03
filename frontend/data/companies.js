@@ -1,12 +1,11 @@
 import axios from 'axios';
 
 const getCompanies = async () => {
-    const response = await axios.get("http://localhost:3010/api/Companies");
-    return response
+    return await axios.get(`${process.env.API}/companies`)
 }
 
 const createCompany = (Company) => {
-    const response = axios.post(`${process.env.API}/Companies`, {
+    return axios.post(`${process.env.API}/companies`, {
         name: Company.name,
         email: Company.email,
         rut: Company.rut,
@@ -14,19 +13,15 @@ const createCompany = (Company) => {
         phone: Company.phone,
         address: Company.address,
         contact: Company.contact
-    });
-    return response
+    })
 }
 
 const getCompany = async (id) => {
-    console.log(id)
-    const response = await axios.get(`${process.env.API}/Company/${id}`)
-    return response
+    return await axios.get(`${process.env.API}/companies/${id}`)
 }
 
-const updateCompany = (id, Company) => {
-    const response = axios.put(`${process.env.API}/Company/${id}`, Company)
-    return response
+const updateCompany = (id, company) => {
+    return axios.put(`${process.env.API}/companies/${id}`, company)
 }
 
 module.exports = {
