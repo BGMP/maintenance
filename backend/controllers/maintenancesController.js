@@ -23,27 +23,12 @@ function createMaintenance(req, res) {
 }
 
 function getMaintenance(req, res) {
-    let userRole
-    let companyId;
-    if (req.body.company != null) {
-        userRole = "company"
-        companyId = req.body.company._id
-    } else {
-        userRole = req.body.user.role
-    }
-
-    Maintenance.findById(req.params.id, function (err, maintenance) {
-        if (!maintenance) {
+    Maintenance.findById(req.params.id, function (err, company) {
+        if (!company) {
             res.status(404).send("No result found");
-            return
+        } else {
+            res.json(company);
         }
-
-        if (userRole === "company" && !maintenance.company.equals(companyId)) {
-            res.status(401).send("No estás autorizado para ver esta mantención")
-            return
-        }
-
-        res.json(maintenance);
     });
 }
 
