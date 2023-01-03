@@ -6,7 +6,7 @@ const getCompanies = async () => {
 }
 
 const createCompany = (Company) => {
-    const response = axios.post(`${process.env.SERVIDOR}/Companies`, {
+    const response = axios.post(`${process.env.API}/Companies`, {
         name: Company.name,
         email: Company.email,
         rut: Company.rut,
@@ -20,12 +20,12 @@ const createCompany = (Company) => {
 
 const getCompany = async (id) => {
     console.log(id)
-    const response = await axios.get(`${process.env.SERVIDOR}/Company/${id}`)
+    const response = await axios.get(`${process.env.API}/Company/${id}`)
     return response
 }
 
 const updateCompany = (id, Company) => {
-    const response = axios.put(`${process.env.SERVIDOR}/Company/${id}`, Company)
+    const response = axios.put(`${process.env.API}/Company/${id}`, Company)
     return response
 }
 
