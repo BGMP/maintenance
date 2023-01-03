@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { getProduct } from '../../../data/maintenances'
-import { Button, Container, Heading, HStack, Stack, Text } from '@chakra-ui/react'
+import { getMaintenance } from '../../data/maintenances'
 import { useRouter } from 'next/router'
-import ShowInfo from '../../../components/ShowInfo'
+import ShowInfo from '../../components/ShowInfo'
+import { Button, Container, Heading, HStack, Stack } from '@chakra-ui/react'
 
 export const getServerSideProps = async (context) => {
     try {
-        const response = await getProduct(context.query.maintenance, localStorage.getItem('token'))
+        const response = await getMaintenance(context.query.maintenance)
         if (response.status === 200) {
             return {
                 props: {
@@ -27,18 +27,17 @@ export const getServerSideProps = async (context) => {
             }
         }
     }
-
 }
 
-const editar = ({ data }) => {
+const view = ({ data }) => {
     const [maintenance] = useState(data)
     const router = useRouter()
 
     return (
         <Container maxW="container.xl" mt={10}>
-            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>Producto: {product.name}</Heading>
+            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>ID: {maintenance._id}</Heading>
             <Stack my={10}>
-                <ShowInfo value={maintenance.name} color={"green.300"} tag={"Nombre"} />
+                <ShowInfo value={maintenance.company} color={"green.300"} tag={"Nombre"} />
                 <ShowInfo value={maintenance.description} color={"blue.300"} tag={"Descripción"} />
             </Stack>
             <HStack >
@@ -50,4 +49,4 @@ const editar = ({ data }) => {
     )
 }
 
-export default editar
+export default view
