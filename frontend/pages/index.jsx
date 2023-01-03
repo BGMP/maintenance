@@ -1,7 +1,8 @@
 import { React, Fragment, useState, useEffect } from 'react'
 import { Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { getMaintenances } from '../data/maintenances'
+import {getMaintenance, getMaintenances} from '../data/maintenances'
+import { getCompany } from '../data/companies'
 
 function index() {
 

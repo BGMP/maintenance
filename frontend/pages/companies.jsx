@@ -46,15 +46,18 @@ function index() {
     return (
         <Fragment>
             <Container maxW="container.xl">
-                <Heading as="h2" size="2xl" textAlign="center" mt="10">Mantenciones</Heading>
+                <Heading as="h2" size="2xl" textAlign="center" mt="10">Agenda de contactos</Heading>
                 <Stack spacing={4} mt="10">
                     <Table variant="simple">
                         <Thead>
                             <Tr>
-                                <Td>Compañía</Td>
-                                <Td>Descripción</Td>
-                                <Td>Tipo</Td>
-                                <Td>Acciones</Td>
+                                <Td>Nombre</Td>
+                                <Td>Email</Td>
+                                <Td>Rut</Td>
+                                <Td>Area de tabajo</Td>
+                                <Td>Numero</Td>
+                                <Td>Direccion</Td>
+                                <Td>Nombre del contacto</Td>
                             </Tr>
                         </Thead>
                         <Tbody>
