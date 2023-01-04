@@ -24,17 +24,17 @@ function createMaintenance(req, res) {
 }
 
 function getMaintenance(req, res) {
-    Maintenance.findById(req.params.id, function (err, company) {
-        if (!company) {
-            res.status(404).send("No result found");
-        } else {
-            res.json(company);
+    Maintenance.findById(req.params.id).populate({path: "company"}).exec((error, maintenances) => {
+        if (error) {
+            return res.status(400).send({message: 'Could not find maintenance.'})
         }
-    });
+
+        return res.status(200).send(maintenances)
+    })
 }
 
 function updateMaintenance(req, res) {
-    Maintenance.findByIdAndUpdate(req.params.id, req.body.maintenance)
+    Maintenance.findByIdAndUpdate(req.params.id, req.body)
         .then(function () {
             res.json("Maintenance updated");
         })

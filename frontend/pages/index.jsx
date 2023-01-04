@@ -1,5 +1,18 @@
 import { React, Fragment, useState, useEffect } from 'react'
-import { Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody, TableContainer } from '@chakra-ui/react'
+import {
+    Button,
+    Container,
+    Heading,
+    HStack,
+    Stack,
+    Table,
+    Thead,
+    Tr,
+    Td,
+    Tbody,
+    TableContainer,
+    Text
+} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import {getMaintenance, getMaintenances} from '../data/maintenances'
 import { getCompany } from '../data/companies'
@@ -44,12 +57,12 @@ function Index() {
 
     return (
       <Fragment>
-          <Container maxW="container.xl" pb={10}>
-              <Heading as="h2" size="2xl" textAlign="center" mt="10">Mantenciones</Heading>
-              <Button color={"#FFF"} backgroundColor={"#41DC94"} _hover={{bgColor: "#1b583c"}} mt="10" mb="10" onClick={() => router.push('/maintenance/create')}>Agregar Mantención</Button>
+          <Container maxW="container.xl" pb={10} pt={10}>
+              <Heading as="h2" size="2xl" textAlign="center"><Text as='u'>Mantenciones</Text></Heading>
+              <Button color={"#FFF"} backgroundColor={"#41DC94"} _hover={{bgColor: "#1b583c"}} mt="5" onClick={() => router.push('/maintenance/create')}>Agregar Mantención</Button>
               <Stack spacing={4} mt="10">
                   <TableContainer w="full">
-                      <Table variant="simple">
+                      <Table variant="striped">
                           <Thead>
                               <Tr>
                                   <Td>Empresa</Td>

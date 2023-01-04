@@ -10,7 +10,7 @@ export const getServerSideProps = async (context) => {
     const response = await getMaintenance(context.query.maintenance)
     return {
         props: {
-            data: response
+            data: response.data
         }
     }
 }
@@ -50,11 +50,13 @@ const Edit = ({ data }) => {
     }
     return (
         <Container maxW="container.xl" mt={10}>
-            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>Editar Mantencion: {mant[0]._id}</Heading>
+            <Heading as={"h2"} size={"2xl"}>Mantención</Heading>
+            <Heading as={"h3"} size={"1xl"}>ID: {mant._id}</Heading>
+            <hr color={"#000"}/>
             <Stack spacing={4} mt={10}>
-                <InputForm label="Objetivo" handleChange={handleChange} name="target" placeholder="Objetivo de la mantención" type="text" value={mant[0].target} />
-                <TextAreaInput label="Descripción" handleChange={handleChange} name="description" placeholder="Descripción de la mantención" value={mant[0].description} />
-                <InputForm label="Tipo" handleChange={handleChange} name="type" placeholder="Tipo de mantención" type="text" value={mant[0].type} />
+                <InputForm label="Objetivo" handleChange={handleChange} name="target" placeholder="Objetivo de la mantención" type="text" value={mant.target} />
+                <TextAreaInput label="Descripción" handleChange={handleChange} name="description" placeholder="Descripción de la mantención" value={mant.description} />
+                <InputForm label="Tipo" handleChange={handleChange} name="type" placeholder="Tipo de mantención" type="text" value={mant.type} />
             </Stack>
             <HStack>
                 <Button colorScheme="blue" mt={10} mb={10} onClick={submitMaintenance}>Aplicar</Button>

@@ -19,13 +19,13 @@ function createRegistry(req, res) {
 }
 
 function getRegistry(req, res) {
-    Registry.findById(req.params.id, function (err, registry) {
-        if (!registry) {
-            res.status(404).send("No result found");
-        } else {
-            res.json(registry);
+    Registry.findById(req.params.id).populate({path: "maintenance"}).exec((error, registries) => {
+        if (error) {
+            return res.status(400).send({message: 'Could not find registries.'})
         }
-    });
+
+        return res.status(200).send(registries)
+    })
 }
 
 function updateRegistry(req, res) {
@@ -55,12 +55,12 @@ function deleteRegistry(req, res) {
 }
 
 function getRegistries(req, res) {
-    Registry.find({}, (error, registry) => {
+    Registry.find({}).populate({path: "maintenance"}).exec((error, registries) => {
         if (error) {
-            return res.status(400).send({message: 'No se encontro el registro.'})
+            return res.status(400).send({message: 'Could not find registry.'})
         }
 
-        return res.status(200).send(registry)
+        return res.status(200).send(registries)
     })
 }
 

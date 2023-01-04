@@ -4,6 +4,17 @@ const formatDate = (date) => {
     return newDate.toLocaleString()
 }
 
+const hr = ({ color }) => (
+    <hr
+        style={{
+            color: color,
+            backgroundColor: color,
+            height: 5
+        }}
+    />
+);
+
 module.exports = {
-    formatDate
+    formatDate,
+    hr
 }

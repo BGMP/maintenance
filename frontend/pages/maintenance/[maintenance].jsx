@@ -10,7 +10,7 @@ export const getServerSideProps = async (context) => {
         const response = await getMaintenance(context.query.maintenance)
         return {
             props: {
-                data: response
+                data: response.data
             }
         }
     } catch (error) {
@@ -29,14 +29,16 @@ const View = ({ data }) => {
 
     return (
         <Container maxW="container.xl" mt={10}>
-            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>ID: {maintenance[0]._id}</Heading>
+            <Heading as={"h2"} size={"2xl"}>Mantenimiento</Heading>
+            <Heading as={"h3"} size={"1xl"}>ID: {maintenance._id}</Heading>
+            <hr color={"#000"}/>
             <Stack my={10}>
-                <ShowInfo value={maintenance[0].company.name} color={"green.300"} tag={"Empresa"} />
-                <ShowInfo value={maintenance[0].description} color={"blue.300"} tag={"Descripción"} />
-                <ShowInfo value={maintenance[0].target} color={"blue.300"} tag={"Objetivo"} />
-                <ShowInfo value={maintenance[0].type} color={"blue.300"} tag={"Tipo"} />
-                <ShowInfo value={formatDate(maintenance[0].start_date)} color={"blue.300"} tag={"Fecha de Inicio"} />
-                <ShowInfo value={formatDate(maintenance[0].end_date)} color={"blue.300"} tag={"Fecha de Termino"} />
+                <ShowInfo value={maintenance.company.name} color={"green.300"} tag={"Empresa"} />
+                <ShowInfo value={maintenance.description} color={"blue.300"} tag={"Descripción"} />
+                <ShowInfo value={maintenance.target} color={"blue.300"} tag={"Objetivo"} />
+                <ShowInfo value={maintenance.type} color={"blue.300"} tag={"Tipo"} />
+                <ShowInfo value={formatDate(maintenance.start_date)} color={"blue.300"} tag={"Fecha de Inicio"} />
+                <ShowInfo value={formatDate(maintenance.end_date)} color={"blue.300"} tag={"Fecha de Termino"} />
             </Stack>
             <HStack >
                 <Button w={"full"} colorScheme="blue" mt={10} mb={10} onClick={() => router.push(`./edit/${maintenance[0]._id}`)}>Editar</Button>

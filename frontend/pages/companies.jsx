@@ -1,5 +1,5 @@
 import { React, Fragment, useState, useEffect } from 'react'
-import {Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody, TableContainer} from '@chakra-ui/react'
+import {Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody, TableContainer, Text} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import {getCompanies, updateCompany} from '../data/companies'
 
@@ -27,11 +27,13 @@ function Index() {
                     <Td>{company.area}</Td>
                     <Td>{company.phone}</Td>
                     <Td>{company.address}</Td>
-                    <Td>{company.contact}</Td>
                     <Td>
-                        <HStack>
-
-                        </HStack>
+                        <Td>
+                            <HStack>
+                                <Button color={"#FFF"} backgroundColor={"#428BCA"} _hover={{bgColor: "#2a577a"}} onClick={() => router.push(`./company/${company._id}`)}>Ver</Button>
+                                <Button color={"#ffffff"} backgroundColor={"#ffb432"} _hover={{bgColor: "#c48d29"}} onClick={() => router.push(`./company/edit/${company._id}`)}>Editar</Button>
+                            </HStack>
+                        </Td>
                     </Td>
                 </Tr>
             )
@@ -47,10 +49,11 @@ function Index() {
     return (
         <Fragment>
             <Container maxW="container.xl">
-                <Heading as="h2" size="2xl" textAlign="center" mt="10">Agenda de contactos</Heading>
+                <Heading as="h2" size="2xl" textAlign="center" mt="10"><Text as='u'>Agenda de Empresas</Text></Heading>
+                <Button color={"#FFF"} backgroundColor={"#41DC94"} _hover={{bgColor: "#1b583c"}} mt="5" onClick={() => router.push('/company/create')}>Agregar Empresa</Button>
                 <Stack spacing={4} mt="10">
                     <TableContainer w="full">
-                        <Table variant="simple">
+                        <Table variant="striped">
                             <Thead>
                                 <Tr>
                                     <Td>Nombre</Td>
@@ -59,7 +62,7 @@ function Index() {
                                     <Td>Area de tabajo</Td>
                                     <Td>Numero</Td>
                                     <Td>Direccion</Td>
-                                    <Td>Nombre del contacto</Td>
+                                    <Td>Acciones</Td>
                                 </Tr>
                             </Thead>
                             <Tbody>

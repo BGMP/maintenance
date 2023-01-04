@@ -1,28 +1,23 @@
 import axios from 'axios';
 
 const getRegistries = async () => {
-    const response = await axios.get("http://localhost:3010/api/Registries");
-    return response
+    return await axios.get(`${process.env.API}/registries`)
 }
 
-const createRegistry = (Registry) => {
-    const response = axios.post(`${process.env.SERVIDOR}/Registries`, {
-        maintenance: Registry.maintenance,
-        comment: Registry.comment,
-        files: Registry.files
-    });
-    return response
+const createRegistry = (registry) => {
+    return axios.post(`${process.env.API}/registry`, {
+        maintenance: registry.maintenance,
+        comment: registry.comment,
+        files: registry.files
+    })
 }
 
 const getRegistry = async (id) => {
-    console.log(id)
-    const response = await axios.get(`${process.env.SERVIDOR}/Registry/${id}`)
-    return response
+    return await axios.get(`${process.env.API}/registry/${id}`)
 }
 
-const updateRegistry = (id, Registry) => {
-    const response = axios.put(`${process.env.SERVIDOR}/Registry/${id}`, Registry)
-    return response
+const updateRegistry = (id, registry) => {
+    return axios.put(`${process.env.API}/registry/${id}`, registry)
 }
 
 module.exports = {

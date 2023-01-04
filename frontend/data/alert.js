@@ -1,15 +1,30 @@
-import axios from "axios";
+import axios from 'axios';
 
-const getAlert = async () => {
-    const response = await axios.get(`${process.env.SERVIDOR}/alert`)
-    return response
+const getAlerts = async () => {
+    return await axios.get(`${process.env.API}/alerts`)
 }
-const createAlert = async (alert) => {
+
+const createAlert = (alert) => {
     console.log(alert)
-    const response = await axios.post(`${process.env.SERVIDOR}/alert`, alert)
-    return response
+
+    return axios.post(`${process.env.API}/alert`, {
+        title: alert.title,
+        description: alert.description,
+        type: alert.type
+    })
 }
+
+const getAlert = async (id) => {
+    return await axios.get(`${process.env.API}/alert/${id}`)
+}
+
+const updateAlert = (id, company) => {
+    return axios.patch(`${process.env.API}/alert/${id}`, company)
+}
+
 module.exports = {
+    getAlerts,
+    createAlert,
     getAlert,
-    createAlert
+    updateAlert
 }
