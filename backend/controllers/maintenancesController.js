@@ -1,4 +1,5 @@
 const Maintenance = require('../models/maintenance')
+const Company = require('../models/company')
 
 function createMaintenance(req, res) {
     const {company, target, type, description, start_date, end_date, registry} = req.body
@@ -68,7 +69,7 @@ function getMaintenances(req, res) {
     //    userRole = req.body.user.role
     //}
 
-    Maintenance.find({}, (error, maintenances) => {
+    Maintenance.find({}).populate({path: "company"}).exec((error, maintenances) => {
         if (error) {
             return res.status(400).send({message: 'Could not find maintenance.'})
         }

@@ -7,15 +7,15 @@ import { useRouter } from 'next/router'
 import { Formik } from 'formik'
 import maintenanceValidation from '../../validations/maintenanceValidation'
 
-const maintenances = () => {
+const Maintenances = () => {
 
     const [maintenance, setMaintenance] = useState({
         company: '',
-        target: 0,
-        type: 0,
+        target: '',
+        type: '',
         description: '',
-        start_date: '',
-        end_date: ''
+        start_date: '1/1/2014',
+        end_date: '1/1/2014'
     })
 
     const router = useRouter()
@@ -42,7 +42,7 @@ const maintenances = () => {
                   }) => (
                     <form onSubmit={handleSubmit} id="form">
                         <Stack spacing={4} mt={10}>
-                            <InputForm label="Nombre" handleChange={handleChange} name="company" placeholder="ID de la empresa" type="text" value={values.company} handleBlur={handleBlur} />
+                            <InputForm label="ID Compañía" handleChange={handleChange} name="company" placeholder="ID de la empresa" type="text" value={values.company} handleBlur={handleBlur} />
                             {touched.company && errors.company && (
                                 <Text color={"red"}>{errors.company}</Text>
                             )}
@@ -58,6 +58,14 @@ const maintenances = () => {
                             {touched.type && errors.type && (
                                 <Text color={"red"}>{errors.type}</Text>
                             )}
+                            <InputForm label="Fecha Inicio" handleChange={handleChange} name="start_date" placeholder="Fecha inicio" type="text" value={values.start_date} handleBlur={handleBlur} />
+                            {touched.start_date && errors.start_date && (
+                                <Text color={"red"}>{errors.start_date}</Text>
+                            )}
+                            <InputForm label="Fecha Término" handleChange={handleChange} name="end_date" placeholder="Fecha término" type="text" value={values.end_date} handleBlur={handleBlur} />
+                            {touched.end_date && errors.end_date && (
+                                <Text color={"red"}>{errors.end_date}</Text>
+                            )}
                         </Stack>
                         <HStack>
                             <Button colorScheme="blue" mt={10} mb={10} type={"submit"} >Crear</Button>
@@ -70,4 +78,4 @@ const maintenances = () => {
     )
 }
 
-export default maintenances
+export default Maintenances

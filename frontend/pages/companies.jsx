@@ -1,8 +1,9 @@
 import { React, Fragment, useState, useEffect } from 'react'
-import { Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody } from '@chakra-ui/react'
+import {Button, Container, Heading, HStack, Stack, Table, Thead, Tr, Td, Tbody, TableContainer} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import {getCompanies, updateCompany} from '../data/companies'
-function index() {
+
+function Index() {
 
     const [companies, setCompanies] = useState([{
         name: '',
@@ -48,26 +49,28 @@ function index() {
             <Container maxW="container.xl">
                 <Heading as="h2" size="2xl" textAlign="center" mt="10">Agenda de contactos</Heading>
                 <Stack spacing={4} mt="10">
-                    <Table variant="simple">
-                        <Thead>
-                            <Tr>
-                                <Td>Nombre</Td>
-                                <Td>Email</Td>
-                                <Td>Rut</Td>
-                                <Td>Area de tabajo</Td>
-                                <Td>Numero</Td>
-                                <Td>Direccion</Td>
-                                <Td>Nombre del contacto</Td>
-                            </Tr>
-                        </Thead>
-                        <Tbody>
-                            {contentTable()}
-                        </Tbody>
-                    </Table>
+                    <TableContainer w="full">
+                        <Table variant="simple">
+                            <Thead>
+                                <Tr>
+                                    <Td>Nombre</Td>
+                                    <Td>Email</Td>
+                                    <Td>Rut</Td>
+                                    <Td>Area de tabajo</Td>
+                                    <Td>Numero</Td>
+                                    <Td>Direccion</Td>
+                                    <Td>Nombre del contacto</Td>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
+                                {contentTable()}
+                            </Tbody>
+                        </Table>
+                    </TableContainer>
                 </Stack>
             </Container>
         </Fragment>
     )
 }
 
-export default index
+export default Index

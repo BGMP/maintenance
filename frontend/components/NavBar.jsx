@@ -7,11 +7,11 @@ const NavBar = ({ children }) => {
     const router = useRouter()
     return (
         <Fragment>
-            <Container>
-                <HStack>
-                    <Button colorScheme={"orange"} onClick={() => router.push(`/`)}>Mantenciones</Button>
-                    <Button colorScheme={"teal"} onClick={() => router.push(`./companies`)}>Empresas</Button>
-                    <Button colorScheme={"teal"} onClick={() => router.push(`./registries`)}>Registros</Button>
+            <Container py={10}>
+                <HStack justify={"center"} width={"full"}>
+                    <Button color={"#FFF"} backgroundColor={"#428BCA"} _hover={{bgColor: "#2a577a"}} width={"full"} onClick={() => router.push(`/`)}>Mantenciones</Button>
+                    <Button color={"#FFF"} backgroundColor={"#428BCA"} _hover={{bgColor: "#2a577a"}} width={"full"} onClick={() => router.push(`./companies`)}>Empresas</Button>
+                    <Button color={"#FFF"} backgroundColor={"#428BCA"} _hover={{bgColor: "#2a577a"}} width={"full"} onClick={() => router.push(`./registries`)}>Registros</Button>
                 </HStack>
             </Container>
             { children }

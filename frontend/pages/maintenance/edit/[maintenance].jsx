@@ -10,12 +10,12 @@ export const getServerSideProps = async (context) => {
     const response = await getMaintenance(context.query.maintenance)
     return {
         props: {
-            data: response.data
+            data: response
         }
     }
 }
 
-const edit = ({ data }) => {
+const Edit = ({ data }) => {
     const [mant, setMaintenance] = useState(data)
     const router = useRouter()
     const { maintenance } = router.query
@@ -50,18 +50,18 @@ const edit = ({ data }) => {
     }
     return (
         <Container maxW="container.xl" mt={10}>
-            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>Editar Mantencion: {mant._id}</Heading>
+            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>Editar Mantencion: {mant[0]._id}</Heading>
             <Stack spacing={4} mt={10}>
-                <InputForm label="Objetivo" handleChange={handleChange} name="target" placeholder="Objetivo de la mantención" type="text" value={mant.target} />
-                <TextAreaInput label="Descripción" handleChange={handleChange} name="description" placeholder="Descripción de la mantención" value={mant.description} />
-                <InputForm label="Tipo" handleChange={handleChange} name="type" placeholder="Tipo de mantención" type="text" value={mant.type} />
+                <InputForm label="Objetivo" handleChange={handleChange} name="target" placeholder="Objetivo de la mantención" type="text" value={mant[0].target} />
+                <TextAreaInput label="Descripción" handleChange={handleChange} name="description" placeholder="Descripción de la mantención" value={mant[0].description} />
+                <InputForm label="Tipo" handleChange={handleChange} name="type" placeholder="Tipo de mantención" type="text" value={mant[0].type} />
             </Stack>
             <HStack>
-                <Button colorScheme="blue" mt={10} mb={10} onClick={submitMaintenance}>Editar Mantención</Button>
+                <Button colorScheme="blue" mt={10} mb={10} onClick={submitMaintenance}>Aplicar</Button>
                 <Button colorScheme="red" mt={10} mb={10} onClick={() => router.push('/')}>Cancelar</Button>
             </HStack>
         </Container>
     )
 }
 
-export default edit
+export default Edit

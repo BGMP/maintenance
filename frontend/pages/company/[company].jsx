@@ -29,7 +29,7 @@ export const getServerSideProps = async (context) => {
     }
 }
 
-const view = ({ data }) => {
+const View = ({ data }) => {
     const [company] = useState(data)
     const router = useRouter()
 
@@ -49,4 +49,4 @@ const view = ({ data }) => {
     )
 }
 
-export default view
+export default View

@@ -16,9 +16,9 @@ const maintenanceValidation = yup.object({
         .max(512, "Debe contener maximo 150 caracteres")
         .required("La descripcion es obligatoria"),
     start_date: yup.date()
-        .required(),
+        .required("Le fecha debe ir en formato mm/dd/aa"),
     end_date: yup.date()
-        .required()
+        .required("Le fecha debe ir en formato mm/dd/aa")
 })
 
 export default maintenanceValidation

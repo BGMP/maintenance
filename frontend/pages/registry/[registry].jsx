@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import ShowInfo from '../../components/ShowInfo'
 import { Button, Container, Heading, HStack, Stack } from '@chakra-ui/react'
 
-export const getServerSidePropsShow = async (context) => {
+export const getServerSideProps = async (context) => {
     try {
         const response = await getMaintenance(context.query.maintenance)
         if (response.status === 200) {
@@ -29,7 +29,7 @@ export const getServerSidePropsShow = async (context) => {
     }
 }
 
-const view = ({ data }) => {
+const View = ({ data }) => {
     const [maintenance] = useState(data)
     const router = useRouter()
 
@@ -49,4 +49,4 @@ const view = ({ data }) => {
     )
 }
 
-export default view
+export default View

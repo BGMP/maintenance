@@ -15,7 +15,7 @@ export const getServerSideProps = async (context) => {
     }
 }
 
-const edit = ({ data }) => {
+const Edit = ({ data }) => {
     const [mant, setCompany] = useState(data)
     const router = useRouter()
     const { company } = router.query
@@ -64,4 +64,4 @@ const edit = ({ data }) => {
     )
 }
 
-export default edit
+export default Edit
