@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const getRegistries = async () => {
-    return await axios.get(`${process.env.API}/registries`)
+const getRegistries = async (maintenance) => {
+    return await axios.get(`${process.env.API}/registries/${maintenance}`)
 }
 
 const createRegistry = (registry) => {

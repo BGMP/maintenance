@@ -14,7 +14,7 @@ import {
     Text
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import {getCompanies, getMaintenances, updateCompany} from '../data/maintenances'
+import { getMaintenances } from '../data/maintenances'
 function Registries() {
 
     const [maintenances, setMaintenances] = useState([{
@@ -38,8 +38,7 @@ function Registries() {
                     <Td>{maintenance.description}</Td>
                     <Td>
                         <HStack>
-                            <Button color={"#FFF"} backgroundColor={"#428BCA"} _hover={{bgColor: "#2a577a"}} onClick={() => router.push(`./maintenance/${maintenance._id}`)}>Ver</Button>
-                            <Button color={"#ffffff"} backgroundColor={"#ffb432"} _hover={{bgColor: "#c48d29"}} onClick={() => router.push(`./maintenance/edit/${maintenance._id}`)}>Editar</Button>
+                            <Button color={"#FFF"} backgroundColor={"#428BCA"} _hover={{bgColor: "#2a577a"}} onClick={() => router.push(`./registry/${maintenance._id}`)}>Ver</Button>
                         </HStack>
                     </Td>
                 </Tr>
@@ -57,6 +56,8 @@ function Registries() {
         <Fragment>
             <Container maxW="container.xl">
                 <Heading as="h2" size="2xl" textAlign="center" mt="10"><Text as='u'>Registros</Text></Heading>
+                <Button color={"#FFF"} backgroundColor={"#41DC94"} _hover={{bgColor: "#1b583c"}} mt="5" onClick={() => router.push('/registry/create')}>Crear Registro</Button>
+
                 <TableContainer w="full">
                     <Stack spacing={4} mt="10">
                         <Table variant="striped">
