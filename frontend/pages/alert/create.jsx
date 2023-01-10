@@ -1,9 +1,9 @@
 import {React, useState} from "react";
 import {
     Button,
-    Container,
+    Container, FormControl, FormLabel,
     Heading,
-    HStack,
+    HStack, Input,
     Stack,
     Text
 } from "@chakra-ui/react";
@@ -53,13 +53,17 @@ const Create = () => {
                             {touched.description && errors.description && (
                                 <Text color={"red"}>{errors.description}</Text>
                             )}
-                            <Field as="select" name="type">
-                                <option value="admin">Admin</option>
-                                <option value="company">Company</option>
-                                <option value="vecino">Vecino</option>
-                            </Field>
-
-
+                            <FormControl id="type">
+                                <FormLabel>Tipo</FormLabel>
+                                <Input as="select" name="type" type="type" onChange={handleChange} value={values.type} onBlur={handleBlur} placeholder="admin">
+                                    <option value="admin">Admin</option>
+                                    <option value="company">Company</option>
+                                    <option value="vecino">Vecino</option>
+                                </Input>
+                            </FormControl>
+                            {touched.type && errors.type && (
+                                <Text color={"red"}>{errors.type}</Text>
+                            )}
                         </Stack>
                         <HStack>
                             <Button colorScheme="blue" mt={10} mb={10} type={"submit"} onClick={() => router.push('/alerts')}>Crear</Button>
