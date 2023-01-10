@@ -1,12 +1,16 @@
-import { useState } from 'react'
-import { getMaintenance } from '../../data/maintenances'
+import {React, useState, useEffect, Fragment} from 'react'
+import { getRegistries } from '../../data/registry'
 import { useRouter } from 'next/router'
 import ShowInfo from '../../components/ShowInfo'
 import { Button, Container, Heading, HStack, Stack } from '@chakra-ui/react'
 
+
+
+
+
 export const getServerSideProps = async (context) => {
     try {
-        const response = await getMaintenance(context.query.maintenance)
+        const response = await getRegistries(context.query.registry)
         if (response.status === 200) {
             return {
                 props: {
@@ -30,21 +34,28 @@ export const getServerSideProps = async (context) => {
 }
 
 const View = ({ data }) => {
-    const [maintenance] = useState(data)
+
+    const [registry] = useState(data)
     const router = useRouter()
+
+    const registros = () => {
+        return registry.map(r => {
+            return (
+                <Fragment>
+                    <ShowInfo value={r.comment} color={"blue.300"} tag={"Comentario"} />
+                    <ShowInfo value={r.files} color={"blue.300"} tag={"Archivos"} />
+                </Fragment>
+            )}
+        )
+    }
 
     return (
         <Container maxW="container.xl" mt={10}>
-            <Heading as={"h1"} size={"2xl"} textAlign={"center"}>ID: {maintenance._id}</Heading>
+            <Heading as={"h2"} size={"2xl"}>Mantención: {registry[0].maintenance.target}</Heading>
+            <Heading as={"h3"} size={"1xl"}>ID: {registry[0].maintenance._id}</Heading>
             <Stack my={10}>
-                <ShowInfo value={maintenance.company} color={"green.300"} tag={"Nombre"} />
-                <ShowInfo value={maintenance.description} color={"blue.300"} tag={"Descripción"} />
+                { registros() }
             </Stack>
-            <HStack >
-                <Button w={"full"} colorScheme="blue" mt={10} mb={10}>Editar</Button>
-                <Button w={"full"} colorScheme="red" mt={10} mb={10}>Eliminar</Button>
-                <Button w={"full"} colorScheme="green" mt={10} mb={10} onClick={() => router.push("/")}>Volver</Button>
-            </HStack>
         </Container>
     )
 }

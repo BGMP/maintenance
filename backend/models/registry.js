@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const RegistrySchema = new Schema({
     maintenance: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Maintenance',
+        ref: 'maintenance',
         required: true
     },
 
