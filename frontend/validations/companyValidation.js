@@ -16,8 +16,9 @@ const companyValidation = yup.object({
         .min(5, "Debe contener minimo 5 caracteres")
         .max(30, "Debe contener maximo 30 caracteres"),
     phone: yup.string()
-        .required("Le fecha debe ir en formato mm/dd/aa")
-        .min(9),
+        .required("El teléfono debe tener 9 dígitos!")
+        .min(9)
+        .max(9),
     address: yup.string()
         .required("La empresa debe tener dirección!")
         .min(5, "Debe contener minimo 5 caracteres")

@@ -6,6 +6,7 @@ const getCompanies = async () => {
 
 const createCompany = (company) => {
     console.log(company)
+
     return axios.post(`${process.env.API}/company`, {
         name: company.name,
         email: company.email,

@@ -35,7 +35,7 @@ const Create = () => {
                 validationSchema={companyValidation}
                 onSubmit={(values) => {
                     createCompany(values).then(res => {
-                        router.push("/")
+                        router.push("/companies")
                     })
                 }}
             >
