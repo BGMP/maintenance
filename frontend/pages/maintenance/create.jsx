@@ -3,7 +3,7 @@ import {Button, Container, FormControl, FormLabel, Heading, HStack, Input, Stack
 import {createMaintenance, getMaintenances} from '../../data/maintenances'
 import { getCompanies } from '../../data/companies'
 import InputForm from '../../components/InputForm'
-import TextareaInput from '../../components/TextareaInput'
+import TextAreaInput from '../../components/TextAreaInput'
 import { useRouter } from 'next/router'
 import { Formik } from 'formik'
 import maintenanceValidation from '../../validations/maintenanceValidation'
@@ -35,7 +35,7 @@ const Maintenances = () => {
     const options = () => {
         return companies.map(company => {
             return (
-                <option value={company._id}>{company.name}</option>
+                <option key={company._id} value={company._id}>{company.name}</option>
             )
         })
     }
@@ -75,7 +75,7 @@ const Maintenances = () => {
                                         { options() }
                                     </Input>
                                 </FormControl>
-                                <TextareaInput label="Descripción" handleChange={handleChange} name="description" placeholder="Descripción de la mantención" value={values.description} handleBlur={handleBlur} />
+                                <TextAreaInput label="Descripción" handleChange={handleChange} name="description" placeholder="Descripción de la mantención" value={values.description} handleBlur={handleBlur} />
                                 {touched.description && errors.description && (
                                     <Text color={"red"}>{errors.description}</Text>
                                 )}

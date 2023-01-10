@@ -41,7 +41,7 @@ const View = ({ data }) => {
     const registros = () => {
         return registry.map(r => {
             return (
-                <Fragment>
+                <Fragment key={r._id}>
                     <ShowInfo value={r.comment} color={"blue.300"} tag={"Comentario"} />
                     <ShowInfo value={r.files} color={"blue.300"} tag={"Archivos"} />
                 </Fragment>

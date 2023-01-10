@@ -36,7 +36,7 @@ const Create = () => {
     const options = () => {
         return maintenance.map(m => {
             return (
-                <option value={m._id}>{m.target}</option>
+                <option key={m.id} value={m.id}>{m.target}</option>
             )
         })
     }
