@@ -41,7 +41,7 @@ const View = ({ data }) => {
                 <ShowInfo value={formatDate(maintenance.end_date)} color={"blue.300"} tag={"Fecha de Termino"} />
             </Stack>
             <HStack >
-                <Button w={"full"} colorScheme="blue" mt={10} mb={10} onClick={() => router.push(`./edit/${maintenance[0]._id}`)}>Editar</Button>
+                <Button w={"full"} colorScheme="blue" mt={10} mb={10} onClick={() => router.push(`./edit/${maintenance._id}`)}>Editar</Button>
                 <Button w={"full"} colorScheme="green" mt={10} mb={10} onClick={() => router.push("/")}>Volver</Button>
             </HStack>
         </Container>
